@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+   
+</body>
+<script type="text/javascript">
+
+    let arr = ['<img data-ratio="1" data-type="png" data-w="20" data-src="https://mmbiz.qpic.cn/mmbiz_png/oq1PymRl9D6TknEJ8wks63qyuibJCuovx4sI7M5R19YMgQyib7vxiaGXibsCMTqgm4LQveBJGe6PoJic1XUS7cCrDaw/640?wx_fmt=png" _width="20px" src="https://mmbiz.qpic.cn/mmbiz_png/oq1PymRl9D6TknEJ8wks63qyuibJCuovx4sI7M5R19YMgQyib7vxiaGXibsCMTqgm4LQveBJGe6PoJic1XUS7cCrDaw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" class="" data-fail="0" style="margin: 0px; padding: 0px; display: inline-block; vertical-align: text-bottom; box-sizing: border-box !important; overflow-wrap: break-word !important; height: auto !important; visibility: visible !important; width: 20px !important;"/>'];
+    // console.log(arr[0].substring(arr[0].indexOf("_width=")+8,arr[0].indexOf('px')))
+    // console.log(arr.toString().replace(/.*_width=\"(\d{0,})px\".*/gm, '$1'))
+
+
+    console.log(lacesarSignal());
+
+    function  lacesarSignal() {
+        class Pizza{
+            constructor(yours){
+                this.yours = yours;
+                this.sequence = [1,2,3,4,5,6,7,8,9].map(n =>
+                Math.pow(2, n)).sort((a, b) => a > b ? -1 :(a < b) ? 1 : 0);
+                this.cipher =[];
+            }
+            getCipher(){
+                this.sequence.reduce((total, piece) =>{
+                    if(total + piece > this.yours) return total;
+                    this.cipher.push(piece);
+                    return total += piece
+                }, 0);
+                this.cipher.sort((a,b)=> a > b ? 1 : (a < b) ? -1 : 0);
+                return this;
+            }
+            decrypt(dictionary){
+                return this.cipher.map((atom, idx)=>dictionary[atom + this.keys[idx]]).join("");
+            }
+            getKeys(){
+                this.keys = [5,1,1,-92,-490];
+                return this;
+            }
+        }
+
+        let dictionary = ["自","由","自","在","功","不","可","没","卓","有",
+        "成","效","大","吉","大","利","A","B","C","D","E","F","G","H","I","J",
+        "K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+
+        return new Pizza(666).getKeys().getCipher().decrypt(dictionary)
+    }
+</script>
+</html>
